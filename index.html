@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>and Other Stories — Free Early Reader Edition</title>
+  <meta name="description" content="Get the free early reader edition of and Other Stories by [REDACTED]. Literary speculative short stories in PDF and EPUB." />
+
+  <!-- Open Graph preview -->
+  <meta property="og:title" content="and Other Stories — Free Early Reader Edition" />
+  <meta property="og:description" content="Literary speculative short stories about technology, grief, memory, language, prayer, and unfinished human things." />
+  <meta property="og:image" content="cover.jpg" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root {
+      --paper: #f3ecdf;
+      --paper-deep: #e7ddcc;
+      --ink: #171615;
+      --soft-ink: #4c4945;
+      --muted: #7b756d;
+      --line: rgba(23, 22, 21, 0.18);
+      --shadow: rgba(20, 16, 10, 0.16);
+      --white: #fffaf0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255,255,255,0.48), transparent 22%),
+        radial-gradient(circle at 85% 22%, rgba(120,105,80,0.09), transparent 28%),
+        linear-gradient(180deg, #f6efe4 0%, var(--paper) 46%, #eee4d5 100%);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.28;
+      background-image:
+        linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(0,0,0,0.018) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+    }
+
+    .mark::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--ink);
+      display: inline-block;
+      transform: rotate(2deg);
+      background: rgba(23,22,21,0.04);
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      border-bottom-color: currentColor;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(28px, 5vw, 72px);
+      align-items: center;
+      padding: 48px 0 66px;
+    }
+
+    .cover-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .cover-card {
+      position: relative;
+      width: min(420px, 86vw);
+      padding: 14px;
+      background: rgba(255, 250, 240, 0.5);
+      border: 1px solid rgba(23, 22, 21, 0.14);
+      box-shadow: 0 30px 70px var(--shadow);
+      transform: rotate(-0.7deg);
+    }
+
+    .cover-card::after {
+      content: "";
+      position: absolute;
+      right: -16px;
+      bottom: 42px;
+      width: 62px;
+      height: 62px;
+      border: 1px solid rgba(23,22,21,0.16);
+      background: rgba(255,255,255,0.20);
+      z-index: -1;
+      transform: rotate(6deg);
+    }
+
+    .cover-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(23,22,21,0.08);
+    }
+
+    .kicker {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 400;
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      font-size: clamp(64px, 11vw, 142px);
+    }
+
+    h1 .and {
+      display: block;
+      font-style: italic;
+      font-size: 0.42em;
+      color: #5a3d32;
+      letter-spacing: 0.04em;
+      margin-left: 0.06em;
+      margin-bottom: 0.02em;
+    }
+
+    .subtitle {
+      max-width: 620px;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.35;
+      margin: 28px 0 22px;
+      color: var(--soft-ink);
+    }
+
+    .descriptor {
+      display: inline-grid;
+      gap: 5px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 13px 0;
+      margin: 16px 0 30px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .button {
+      appearance: none;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fffaf0;
+      padding: 14px 20px;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .note-strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+      margin: 12px 0 70px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 22px;
+      color: var(--soft-ink);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .note-strip strong {
+      display: block;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: 5px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 28px;
+      font-weight: 400;
+      font-size: clamp(30px, 4.2vw, 54px);
+      letter-spacing: -0.035em;
+      text-align: center;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      height: 1px;
+      background: var(--line);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .small-card {
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 240, 0.36);
+      padding: 28px;
+      min-height: 260px;
+      position: relative;
+    }
+
+    .small-card::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 26px;
+      height: 26px;
+      background: rgba(23, 22, 21, 0.86);
+      box-shadow:
+        -70px 56px 0 rgba(23, 22, 21, 0.25),
+        -112px 132px 0 rgba(23, 22, 21, 0.12);
+    }
+
+    .small-card p {
+      position: relative;
+      z-index: 1;
+      max-width: 240px;
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .about-copy {
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.65;
+      color: var(--soft-ink);
+    }
+
+    .about-copy p:first-child {
+      margin-top: 0;
+    }
+
+    .form-shell {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      padding: clamp(26px, 5vw, 52px);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(255,250,240,0.78), rgba(231,221,204,0.38));
+      box-shadow: 0 24px 70px rgba(20, 16, 10, 0.10);
+    }
+
+    .form-intro h2 {
+      margin: 0 0 18px;
+      font-weight: 400;
+      font-size: clamp(38px, 5vw, 72px);
+      letter-spacing: -0.045em;
+      line-height: 0.98;
+    }
+
+    .form-intro p {
+      color: var(--soft-ink);
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0 0 18px;
+    }
+
+    .privacy {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+      border-left: 2px solid var(--line);
+      padding-left: 14px;
+      margin-top: 24px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(23,22,21,0.24);
+      background: rgba(255, 250, 240, 0.75);
+      padding: 13px 14px;
+      color: var(--ink);
+      font: 16px Georgia, "Times New Roman", serif;
+      border-radius: 0;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--soft-ink);
+      margin: 4px 0;
+    }
+
+    .checkbox input {
+      width: auto;
+      margin-top: 3px;
+    }
+
+    .thank-you {
+      display: none;
+      border: 1px solid var(--line);
+      padding: 24px;
+      background: rgba(255,250,240,0.74);
+    }
+
+    .thank-you h3 {
+      margin: 0 0 10px;
+      font-weight: 400;
+      font-size: 28px;
+    }
+
+    .thank-you p {
+      line-height: 1.6;
+      color: var(--soft-ink);
+    }
+
+    footer {
+      padding: 50px 0 32px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--line);
+      margin-top: 70px;
+    }
+
+    .hidden-frame {
+      display: none;
+      width: 0;
+      height: 0;
+      border: 0;
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .about-grid,
+      .form-shell,
+      .note-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 22px;
+      }
+
+      .cover-wrap {
+        order: 2;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+
+      .nav {
+        gap: 13px;
+        flex-wrap: wrap;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .page {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .actions {
+        display: grid;
+      }
+
+      .button {
+        text-align: center;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: clamp(58px, 18vw, 88px);
+      }
+
+      .subtitle {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="mark">Free Early Reader Edition</div>
+      <nav class="nav" aria-label="Page navigation">
+        <a href="#about">About</a>
+        <a href="#download">Get the book</a>
+        <a href="#note">Reader note</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="cover-wrap">
+          <div class="cover-card">
+            <img src="cover.jpg" alt="Book cover of and Other Stories by [REDACTED]" />
+          </div>
+        </div>
+
+        <div>
+          <div class="kicker">PDF + EPUB · Free before official release</div>
+          <h1><span class="and">and</span>Other Stories</h1>
+
+          <p class="subtitle">
+            Literary speculative short stories about strange technologies, ordinary grief, memory, language, prayer, and the unfinished things people carry.
+          </p>
+
+          <div class="descriptor">
+            <span>Literary Speculative Short Stories</span>
+            <span>by [REDACTED]</span>
+          </div>
+
+          <div class="actions">
+            <a class="button" href="#download">Get the free edition</a>
+            <a class="button secondary" href="#about">Read what it is</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="note-strip" aria-label="Key details">
+        <div>
+          <strong>Free edition</strong>
+          PDF and EPUB versions are shared with early readers before the official release.
+        </div>
+        <div>
+          <strong>No pressure</strong>
+          A review is not required. If one story stays with you, an honest review later would mean a lot.
+        </div>
+        <div>
+          <strong>Reader list</strong>
+          Join only for the book and occasional updates about future releases. No spam.
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <h2 class="section-title">What this is</h2>
+
+        <div class="about-grid">
+          <div class="small-card">
+            <p>Not a book about machines. A book about what machines fail to simplify.</p>
+          </div>
+
+          <div class="about-copy">
+            <p>
+              Each story begins with a strange technology already settled into ordinary life. What follows belongs to older subjects: grief, family, authorship, memory, truth, care, prediction, suffering, and prayer.
+            </p>
+            <p>
+              This free early reader edition is being shared before the book reaches stores, rankings, and public pages. It has no watermark and no copy number. Just the book, offered quietly to readers who may want to begin with it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="download" class="section">
+        <div class="form-shell">
+          <div class="form-intro">
+            <h2>Get the free early reader edition.</h2>
+            <p>
+              Enter your email and choose your preferred format. You can receive the book as PDF, EPUB, or both.
+            </p>
+            <p>
+              After the official release, you may receive a short note asking for an honest review. No required review, no daily emails.
+            </p>
+
+            <div class="privacy">
+              Your email will only be used for this book and occasional future book updates. You can unsubscribe anytime. Please do not sell or commercially redistribute this free edition.
+            </div>
+          </div>
+
+          <div>
+            <!--
+              GOOGLE FORM CONNECTION:
+              1. Replace the action URL below with your Google Form /formResponse URL.
+              2. Replace each entry.XXXX value with your own Google Form field IDs.
+              3. Keep target="hidden_iframe" so readers do not see Google Forms.
+            -->
+            <iframe class="hidden-frame" name="hidden_iframe" id="hidden_iframe"></iframe>
+
+            <form id="reader-form"
+              action="PASTE_GOOGLE_FORM_FORMRESPONSE_URL_HERE"
+              method="POST"
+              target="hidden_iframe"
+            >
+              <label>
+                Name
+                <input type="text" name="entry.NAME_FIELD_ID" placeholder="Your name" autocomplete="name" />
+              </label>
+
+              <label>
+                Email address
+                <input type="email" name="entry.EMAIL_FIELD_ID" placeholder="you@example.com" autocomplete="email" required />
+              </label>
+
+              <label>
+                Preferred format
+                <select name="entry.FORMAT_FIELD_ID" required>
+                  <option value="">Choose one</option>
+                  <option value="PDF">PDF</option>
+                  <option value="EPUB">EPUB</option>
+                  <option value="Both">Both</option>
+                </select>
+              </label>
+
+              <label>
+                Optional note
+                <textarea name="entry.NOTE_FIELD_ID" placeholder="Anything you want to tell me as an early reader"></textarea>
+              </label>
+
+              <label class="checkbox">
+                <input type="checkbox" name="entry.CONSENT_FIELD_ID" value="I agree" required />
+                <span>I agree to receive the free ebook and occasional book updates from [REDACTED].</span>
+              </label>
+
+              <button class="button" type="submit">Send me the free book</button>
+            </form>
+
+            <div id="thank-you" class="thank-you">
+              <h3>Thank you. Your copy is reserved.</h3>
+              <p>
+                The download links will be sent to your email, or you can add direct PDF/EPUB buttons here later.
+              </p>
+              <p>
+                If one story stays with you, an honest review after the official release would mean a lot. No pressure. Thank you for reading before the book finds its wider life.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="note" class="section">
+        <h2 class="section-title">Early reader note</h2>
+
+        <div class="about-copy" style="max-width: 820px; margin: 0 auto; text-align: center;">
+          <p>
+            This copy belongs to the first circle of readers. Before this book reaches stores, algorithms, rankings, and public pages, it is being shared quietly with early readers.
+          </p>
+          <p>
+            If one story stays with you, that is enough. If the book later finds a wider life, this edition will remain part of its beginning.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>and Other Stories · [REDACTED]</div>
+      <div>Free Early Reader Edition</div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById("reader-form");
+    const thankYou = document.getElementById("thank-you");
+
+    form.addEventListener("submit", function () {
+      setTimeout(function () {
+        form.style.display = "none";
+        thankYou.style.display = "block";
+      }, 700);
+    });
+  </script>
+</body>
+</html>
