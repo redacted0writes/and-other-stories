@@ -620,7 +620,7 @@
             -->
             <iframe class="hidden-frame" name="hidden_iframe" id="hidden_iframe"></iframe>
 
-            <form id="reader-form" action="#" method="GET">
+            <form id="reader-form" action="#" method="POST">
               <label>
                 Name
                 <input type="text" name="entry.946801584" placeholder="Your name" autocomplete="name" />
@@ -697,9 +697,8 @@
   <script>
     const form = document.getElementById("reader-form");
     const thankYou = document.getElementById("thank-you");
-    const hiddenFrame = document.getElementById("hidden_iframe");
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", async function (event) {
       event.preventDefault();
 
       if (!form.checkValidity()) {
@@ -707,28 +706,35 @@
         return;
       }
 
-      const name = form.querySelector('[name="entry.946801584"]').value || "";
-      const email = form.querySelector('[name="entry.1332509857"]').value || "";
-      const format = form.querySelector('[name="entry.836272502"]').value || "";
-      const note = form.querySelector('[name="entry.1029355352"]').value || "";
-      const consentBox = form.querySelector('[name="entry.1786980572"]');
-      const consent = consentBox && consentBox.checked ? consentBox.value : "";
-
       const params = new URLSearchParams();
-      params.set("entry.946801584", name);
-      params.set("entry.1332509857", email);
-      params.set("entry.836272502", format);
-      params.set("entry.1029355352", note);
-      params.set("entry.1786980572", consent);
-      params.set("submit", "Submit");
+      params.append("entry.946801584", form.querySelector('[name="entry.946801584"]').value || "");
+      params.append("entry.1332509857", form.querySelector('[name="entry.1332509857"]').value || "");
+      params.append("entry.836272502", form.querySelector('[name="entry.836272502"]').value || "");
+      params.append("entry.1029355352", form.querySelector('[name="entry.1029355352"]').value || "");
 
-      hiddenFrame.src = "https://docs.google.com/forms/d/e/1FAIpQLSc3UCwkMZ8btYlnlUu145tw_h4qBanFx5qkST2-IXAJcVQAgw/formResponse?" + params.toString();
+      const consentBox = form.querySelector('[name="entry.1786980572"]');
+      if (consentBox && consentBox.checked) {
+        params.append("entry.1786980572", consentBox.value);
+      }
 
-      setTimeout(function () {
-        form.style.display = "none";
-        thankYou.style.display = "block";
-        thankYou.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 900);
+      params.append("submit", "Submit");
+
+      try {
+        await fetch("https://docs.google.com/forms/d/e/1FAIpQLSc3UCwkMZ8btYlnlUu145tw_h4qBanFx5qkST2-IXAJcVQAgw/formResponse", {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+          },
+          body: params.toString()
+        });
+      } catch (error) {
+        console.log("Google Form submission attempted:", error);
+      }
+
+      form.style.display = "none";
+      thankYou.style.display = "block";
+      thankYou.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   </script>
 </body>
