@@ -418,6 +418,20 @@
       margin-top: 3px;
     }
 
+
+    .required {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: normal;
+    }
+
+    .button.loading {
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
     .thank-you {
       display: none;
       border: 1px solid var(--line);
@@ -546,7 +560,7 @@
           <h1><span class="and">and</span>Other Stories</h1>
 
           <p class="subtitle">
-            Literary speculative short stories about strange technologies, ordinary grief, memory, language, prayer, and the unfinished things people carry.
+            A collection of 12 literary speculative short stories about strange technologies, ordinary grief, memory, language, prayer, and the unfinished things people carry.
           </p>
 
           <div class="descriptor">
@@ -586,7 +600,7 @@
 
           <div class="about-copy">
             <p>
-              Each story begins with a strange technology already settled into ordinary life. What follows belongs to older subjects: grief, family, authorship, memory, truth, care, prediction, suffering, and prayer.
+              This is a collection of 12 stories. Each one begins with a strange technology already settled into ordinary life. What follows belongs to older subjects: grief, family, authorship, memory, truth, care, prediction, suffering, and prayer.
             </p>
             <p>
               This free early reader edition is being shared before the book reaches stores, rankings, and public pages. It has no watermark and no copy number. Just the book, offered quietly to readers who may want to begin with it.
@@ -598,27 +612,20 @@
       <section id="download" class="section">
         <div class="form-shell">
           <div class="form-intro">
-            <h2>Get the free early reader edition.</h2>
+            <h2>Join the early reader list.</h2>
             <p>
-              Enter your email and choose your preferred format. You can receive the book as PDF, EPUB, or both.
+              Enter your email, choose your preferred format, and the PDF/EPUB download buttons for the 12-story collection will appear immediately after submission.
             </p>
             <p>
               After the official release, I may send one short note inviting an honest review, only if you feel the book deserves one.
             </p>
 
             <div class="privacy">
-              Your email will only be used for this book and occasional future book updates. You can unsubscribe anytime. Please do not sell or commercially redistribute this free edition.
+              Your email will only be saved for this book and occasional future book updates. No spam. You can unsubscribe anytime. Please do not sell or commercially redistribute this free edition.
             </div>
           </div>
 
           <div>
-            <!--
-              GOOGLE FORM CONNECTION:
-              1. Replace the action URL below with your Google Form /formResponse URL.
-              2. Replace each entry.XXXX value with your own Google Form field IDs.
-              3. Keep target="hidden_iframe" so readers do not see Google Forms.
-            -->
-            <iframe class="hidden-frame" name="hidden_iframe" id="hidden_iframe"></iframe>
 
             <form id="reader-form" action="#" method="GET">
               <label>
@@ -627,12 +634,12 @@
               </label>
 
               <label>
-                Email address
+                Email address <span class="required">required</span>
                 <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
               </label>
 
               <label>
-                Preferred format
+                Preferred format <span class="required">required</span>
                 <select name="format" required>
                   <option value="">Choose one</option>
                   <option value="PDF">PDF</option>
@@ -650,13 +657,13 @@
                 <input type="checkbox" name="consent" value="I agree" required />
                 <span>I agree to receive the free ebook and occasional book updates from [REDACTED].</span>
               </label>
-              <button class="button" type="submit">Get the free edition</button>
+              <button class="button" id="submit-button" type="submit">Get the free edition</button>
             </form>
 
             <div id="thank-you" class="thank-you">
               <h3>Thank you. Your early reader copy is ready.</h3>
               <p>
-                Download the book below. Choose the designed PDF edition or the EPUB edition for comfortable reading on Kindle, Apple Books, Kobo, and other reader apps.
+                Download the book below. Choose the designed PDF edition, the flexible EPUB edition, or both.
               </p>
 
               <div class="download-buttons">
@@ -695,6 +702,7 @@
   <script>
     const form = document.getElementById("reader-form");
     const thankYou = document.getElementById("thank-you");
+    const submitButton = document.getElementById("submit-button");
     const webAppUrl = "https://script.google.com/macros/s/AKfycbzM5nSCk-9HgIyyJ0zldghVDNYovjPqKk9MofmjK_bIAF3ltvZN1w30YCdv3RUoXX2l/exec";
 
     form.addEventListener("submit", async function (event) {
@@ -704,6 +712,9 @@
         form.reportValidity();
         return;
       }
+
+      submitButton.textContent = "Preparing download...";
+      submitButton.classList.add("loading");
 
       const consentBox = form.querySelector('[name="consent"]');
 
@@ -723,9 +734,11 @@
         console.log("Submission attempted:", error);
       }
 
-      form.style.display = "none";
-      thankYou.style.display = "block";
-      thankYou.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(function () {
+        form.style.display = "none";
+        thankYou.style.display = "block";
+        thankYou.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 500);
     });
   </script>
 </body>
