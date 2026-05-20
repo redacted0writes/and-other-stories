@@ -620,11 +620,7 @@
             -->
             <iframe class="hidden-frame" name="hidden_iframe" id="hidden_iframe"></iframe>
 
-            <form id="reader-form"
-              action="https://docs.google.com/forms/d/e/1FAIpQLSc3UCwkMZ8btYlnlUu145tw_h4qBanFx5qkST2-IXAJcVQAgw/formResponse"
-              method="GET"
-              target="hidden_iframe"
-            >
+            <form id="reader-form" action="#" method="GET">
               <label>
                 Name
                 <input type="text" name="entry.946801584" placeholder="Your name" autocomplete="name" />
@@ -701,13 +697,38 @@
   <script>
     const form = document.getElementById("reader-form");
     const thankYou = document.getElementById("thank-you");
+    const hiddenFrame = document.getElementById("hidden_iframe");
 
-    form.addEventListener("submit", function () {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const name = form.querySelector('[name="entry.946801584"]').value || "";
+      const email = form.querySelector('[name="entry.1332509857"]').value || "";
+      const format = form.querySelector('[name="entry.836272502"]').value || "";
+      const note = form.querySelector('[name="entry.1029355352"]').value || "";
+      const consentBox = form.querySelector('[name="entry.1786980572"]');
+      const consent = consentBox && consentBox.checked ? consentBox.value : "";
+
+      const params = new URLSearchParams();
+      params.set("entry.946801584", name);
+      params.set("entry.1332509857", email);
+      params.set("entry.836272502", format);
+      params.set("entry.1029355352", note);
+      params.set("entry.1786980572", consent);
+      params.set("submit", "Submit");
+
+      hiddenFrame.src = "https://docs.google.com/forms/d/e/1FAIpQLSc3UCwkMZ8btYlnlUu145tw_h4qBanFx5qkST2-IXAJcVQAgw/formResponse?" + params.toString();
+
       setTimeout(function () {
         form.style.display = "none";
         thankYou.style.display = "block";
         thankYou.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 700);
+      }, 900);
     });
   </script>
 </body>
