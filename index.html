@@ -230,6 +230,14 @@
       color: var(--ink);
     }
 
+
+    .download-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 22px 0 10px;
+    }
+
     .note-strip {
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
@@ -453,7 +461,15 @@
       .hero,
       .about-grid,
       .form-shell,
-      .note-strip {
+  
+    .download-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 22px 0 10px;
+    }
+
+    .note-strip {
         grid-template-columns: 1fr;
       }
 
@@ -587,7 +603,7 @@
               Enter your email and choose your preferred format. You can receive the book as PDF, EPUB, or both.
             </p>
             <p>
-              After the official release, you may receive a short note asking for an honest review. No required review, no daily emails.
+              After the official release, I may send one short note inviting an honest review, only if you feel the book deserves one.
             </p>
 
             <div class="privacy">
@@ -605,23 +621,23 @@
             <iframe class="hidden-frame" name="hidden_iframe" id="hidden_iframe"></iframe>
 
             <form id="reader-form"
-              action="PASTE_GOOGLE_FORM_FORMRESPONSE_URL_HERE"
+              action="https://docs.google.com/forms/d/e/1FAIpQLSc3UCwkMZ8btYlnlUu145tw_h4qBanFx5qkST2-IXAJcVQAgw/formResponse"
               method="POST"
               target="hidden_iframe"
             >
               <label>
                 Name
-                <input type="text" name="entry.NAME_FIELD_ID" placeholder="Your name" autocomplete="name" />
+                <input type="text" name="entry.946801584" placeholder="Your name" autocomplete="name" />
               </label>
 
               <label>
                 Email address
-                <input type="email" name="entry.EMAIL_FIELD_ID" placeholder="you@example.com" autocomplete="email" required />
+                <input type="email" name="entry.1332509857" placeholder="you@example.com" autocomplete="email" required />
               </label>
 
               <label>
                 Preferred format
-                <select name="entry.FORMAT_FIELD_ID" required>
+                <select name="entry.836272502" required>
                   <option value="">Choose one</option>
                   <option value="PDF">PDF</option>
                   <option value="EPUB">EPUB</option>
@@ -631,22 +647,28 @@
 
               <label>
                 Optional note
-                <textarea name="entry.NOTE_FIELD_ID" placeholder="Anything you want to tell me as an early reader"></textarea>
+                <textarea name="entry.1029355352" placeholder="Anything you want to tell me as an early reader"></textarea>
               </label>
 
               <label class="checkbox">
-                <input type="checkbox" name="entry.CONSENT_FIELD_ID" value="I agree" required />
+                <input type="checkbox" name="entry.1786980572" value="I agree" required />
                 <span>I agree to receive the free ebook and occasional book updates from [REDACTED].</span>
               </label>
 
-              <button class="button" type="submit">Send me the free book</button>
+              <button class="button" type="submit">Get the free edition</button>
             </form>
 
             <div id="thank-you" class="thank-you">
-              <h3>Thank you. Your copy is reserved.</h3>
+              <h3>Thank you. Your early reader copy is ready.</h3>
               <p>
-                The download links will be sent to your email, or you can add direct PDF/EPUB buttons here later.
+                Download the book below. Choose the designed PDF edition or the EPUB edition for comfortable reading on Kindle, Apple Books, Kobo, and other reader apps.
               </p>
+
+              <div class="download-buttons">
+                <a class="button" href="https://drive.google.com/file/d/1fh_R0aKz-FDGruvO-cxyfQh0-mbuL67p/view?usp=sharing" target="_blank" rel="noopener">Download PDF</a>
+                <a class="button secondary" href="https://drive.google.com/file/d/1ddNJeYKsM6Y6LLTIbccWYkrM-nYwNuqu/view?usp=sharing" target="_blank" rel="noopener">Download EPUB</a>
+              </div>
+
               <p>
                 If one story stays with you, an honest review after the official release would mean a lot. No pressure. Thank you for reading before the book finds its wider life.
               </p>
@@ -683,6 +705,7 @@
       setTimeout(function () {
         form.style.display = "none";
         thankYou.style.display = "block";
+        thankYou.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 700);
     });
   </script>
